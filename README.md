@@ -22,7 +22,8 @@ Install from pip with pip install cloudpassage. If you want to make modification
 # Dependencies 
 Part of the script assumes you have labeled your servers with AWS account information to properly obtain the AWS Instance ID and AWS Account ID. The script checks for this server label ("awsAccountID_awsInstanceID"), but only makes this check if the EC2 metadata is not present in the server details JSON.
 
-License
+
+# License
 
 Copyright (c) 2017, CloudPassage, Inc. All rights reserved.
 
