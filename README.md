@@ -1,8 +1,8 @@
 # SVA Report High Vulnerabilities
 
 
-# Disclaimer: This script is provided as is. USE AT YOUR OWN RISK.
-# NOT A SUPPORTED SOLUTION
+Disclaimer: This script is provided as is. USE AT YOUR OWN RISK.
+NOT A SUPPORTED SOLUTION
 
 # Configure
 To configure script add API Key information to cloudpassage.yml File
