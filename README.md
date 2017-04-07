@@ -1,18 +1,21 @@
-#SVA Report High Vulnerabilities
+# SVA Report High Vulnerabilities
 
 
-Disclaimer: This script is provided as is. USE AT YOUR OWN RISK.
-NOT A SUPPORTED SOLUTION
+# Disclaimer: This script is provided as is. USE AT YOUR OWN RISK.
+# NOT A SUPPORTED SOLUTION
 
+# Configure
 To configure script add API Key information to cloudpassage.yml File
 >key_id: your_api_key_id
 
 >secret_key: your_api_secret_key
 
 
-#Requirements
+# Requirements
+
 This script requires Python 2.7.10 or greater
 This script requires the CloudPassage Python SDK
+> pip install cloudpassage
 
 Install from pip with pip install cloudpassage. If you want to make modifications to the SDK you can install it in editable mode by downloading the source from this github repo, navigating to the top directory within the archive and running pip install -e . (note the . at the end). Or you can visit https://github.com/cloudpassage/cloudpassage-halo-python-sdk to clone it directly from our github.
 
