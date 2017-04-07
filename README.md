@@ -19,6 +19,8 @@ This script requires the CloudPassage Python SDK
 
 Install from pip with pip install cloudpassage. If you want to make modifications to the SDK you can install it in editable mode by downloading the source from this github repo, navigating to the top directory within the archive and running pip install -e . (note the . at the end). Or you can visit https://github.com/cloudpassage/cloudpassage-halo-python-sdk to clone it directly from our github.
 
+# Dependencies 
+Part of the script assumes you have labeled your servers with AWS account information to properly obtain the AWS Instance ID and AWS Account ID. The script checks for this server label ("awsAccountID_awsInstanceID"), but only makes this check if the EC2 metadata is not present in the server details JSON.
 
 License
 
