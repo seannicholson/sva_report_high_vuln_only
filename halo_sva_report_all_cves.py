@@ -72,7 +72,7 @@ def get_scan_data(session):
     out_file = "reports/Vunerability_Report_" + time.strftime("%Y%m%d-%H%M%S") + ".csv"
     ofile  = open(out_file, "w")
     halo_server_list = get_halo_servers_id(session)
-    #get_halo_servers_scans= cloudpassage.HttpHelper(session)
+    get_halo_servers_scans= cloudpassage.HttpHelper(session)
     ofile.write('AWS Account Number,AWS Instance ID,Package Name,Package Version,CVE,CVE Rating,CVE Information\n')
     server_count = 1
     total_servers = len(halo_server_list)
@@ -100,11 +100,11 @@ def get_scan_data(session):
                         if finding['status'] == 'bad':
                             finding_cves = finding['cve_entries']
                             for cve in finding_cves:
-                                if float(cve['cvss_score']) >= 7.0:
-                                    cve_link="https://cve.mitre.org/cgi-bin/cvename.cgi?name=" + cve['cve_entry']
-                                    #print cve['cve_entry']
-                                    row="'{0}',{1},{2},{3},{4},{5},{6}\n".format(server['aws_account_id'],server['aws_instance_id'],finding['package_name'],finding['package_version'],cve['cve_entry'],'High',cve_link)
-                                    ofile.write(row)
+                                #if float(cve['cvss_score']) >= 7.0:
+                                cve_link="https://cve.mitre.org/cgi-bin/cvename.cgi?name=" + cve['cve_entry']
+                                #print cve['cve_entry']
+                                row="'{0}',{1},{2},{3},{4},{5},{6}\n".format(server['aws_account_id'],server['aws_instance_id'],finding['package_name'],finding['package_version'],cve['cve_entry'],'High',cve_link)
+                                ofile.write(row)
                 retry_loop_counter = 6
             elif status_code == "401":
                 headers = get_headers()

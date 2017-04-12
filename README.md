@@ -10,7 +10,6 @@ To configure script add API Key information to cloudpassage.yml File
 
 >secret_key: your_api_secret_key
 
-
 # Requirements
 
 This script requires Python 2.7.10 or greater
@@ -22,7 +21,11 @@ This script requires the Requests Python module.
 
 Install from pip with pip install cloudpassage. If you want to make modifications to the SDK you can install it in editable mode by downloading the source from this github repo, navigating to the top directory within the archive and running pip install -e . (note the . at the end). Or you can visit https://github.com/cloudpassage/cloudpassage-halo-python-sdk to clone it directly from our github.
 
-# Dependencies 
+# Running
+Run *python halo_sva_report.py* to generate a CSV of only CVEs with a CVSS score of 7.0 or greater detected for all servers that a agent state of active.
+Run *python halo_sva_report_all_cves.py* to generate a CSV of all CVEs detected for all servers that a agent state of active.
+
+# Dependencies
 Part of the script assumes you have labeled your servers with AWS account information to properly obtain the AWS Instance ID and AWS Account ID. The script checks for this server label ("awsAccountID_awsInstanceID"), but only makes this check if the EC2 metadata is not present in the server details JSON.
 
 
