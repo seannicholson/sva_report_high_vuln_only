@@ -1,8 +1,8 @@
 # WARNING: This script takes a long time to execute if you have a high count
 #          of active servers.
 # Author: Sean Nicholson
-# Version 1.2
-# Date 04.12.2017
+# Version 1.2.1
+# Date 04.14.2017
 ##############################################################################
 
 # Import Python Modules
@@ -69,7 +69,7 @@ def get_scan_data(session):
     headers = get_headers()
     if not os.path.exists("reports"):
         os.makedirs("reports")
-    out_file = "reports/Vunerability_Report_" + time.strftime("%Y%m%d-%H%M%S") + ".csv"
+    out_file = "reports/Vunerability_Report_all_cves_" + time.strftime("%Y%m%d-%H%M%S") + ".csv"
     ofile  = open(out_file, "w")
     halo_server_list = get_halo_servers_id(session)
     get_halo_servers_scans= cloudpassage.HttpHelper(session)
@@ -100,10 +100,15 @@ def get_scan_data(session):
                         if finding['status'] == 'bad':
                             finding_cves = finding['cve_entries']
                             for cve in finding_cves:
-                                #if float(cve['cvss_score']) >= 7.0:
+                                if float(cve['cvss_score']) >= 7.0:
+                                    cve_rating = 'High'
+                                elif float(cve['cvss_score']) < 7.0 and float(cve['cvss_score']) >= 4.0:
+                                    cve_rating = 'Moderate'
+                                elif float(cve['cvss_score']) < 4.0:
+                                    cve_rating = 'Low'
+                                    #print cve['cve_entry']
                                 cve_link="https://cve.mitre.org/cgi-bin/cvename.cgi?name=" + cve['cve_entry']
-                                #print cve['cve_entry']
-                                row="'{0}',{1},{2},{3},{4},{5},{6}\n".format(server['aws_account_id'],server['aws_instance_id'],finding['package_name'],finding['package_version'],cve['cve_entry'],'High',cve_link)
+                                row="'{0}',{1},{2},{3},{4},{5},{6}\n".format(server['aws_account_id'],server['aws_instance_id'],finding['package_name'],finding['package_version'],cve['cve_entry'],cve_rating,cve_link)
                                 ofile.write(row)
                 retry_loop_counter = 6
             elif status_code == "401":
